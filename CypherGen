@@ -1,0 +1,66 @@
+import re
+import random
+
+def password_checker(password):
+    if len(password) < 6:
+        return "Password is too short."
+    elif len(password) > 20:
+        return "Password is too long."
+    elif not re.search(r"[a-z]", password):
+        return "Password must contain at least one lowercase letter."
+    elif not re.search(r"[0-9]", password):
+        return "Password must contain at least one numerical value."
+    elif not re.search(r"[A-Z]", password):
+        return "Password must contain at least one uppercase letter."
+    elif not re.search(r"[!@#$%^&*|\;':/,.?<>]", password):
+        return "Password must contain at least one special character."
+    else:
+        return "Valid Password"
+
+def password_generator():
+    max_len = 20
+    nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    lwcase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+              'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q',
+              'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+              'z']
+    upcase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+              'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q',
+              'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+              'Z']
+    spchars = ['@', '#', '$', '%', '=', ':', '?', '.', '/',
+               '|', '~', '>', '*', '(', ')', '<']
+
+    full_list = nums + upcase + lwcase + spchars
+    rand_digit = random.choice(nums)
+    rand_upper = random.choice(upcase)
+    rand_lower = random.choice(lwcase)
+    rand_symbol = random.choice(spchars)
+
+    temp_pass = rand_digit + rand_upper + rand_lower + rand_symbol
+
+    for _ in range(max_len - 4):
+        temp_pass += random.choice(full_list)
+
+    password = "".join(random.sample(temp_pass, len(temp_pass)))
+    return password
+
+attempts = 0
+user_password = None
+
+while attempts < 5:
+    user_password = input("Enter your password: ")
+    result = password_checker(user_password)
+    if result == "Valid Password":
+        print("Password accepted:", user_password)
+        break
+    else:
+        print(result)
+        attempts += 1
+        print("Attempts remaining:", 5 - attempts)
+
+if attempts == 5 and user_password is not None:
+    print("Exceeded maximum attempts. Generating a random password...")
+    generated_password = password_generator()
+    print("Generated Password:", generated_password)
+
