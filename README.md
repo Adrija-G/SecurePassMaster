@@ -7,10 +7,10 @@ It provides a user-friendly interface for generating random passwords with custo
 
 ### Password Generation
 
-CipherGen allows you to generate strong passwords with various options to meet your security requirements. 
-If the user is unable to generate a password secure enough within 5 attempts, a random password will be suggested to them. 
-This password will be compleetly random, not stored or pre-defined in the code or susceptible to potential security breach. 
-It will also fulfill all the security measures adopted by the program code, the which, in return, is reflective of 
+- CipherGen allows you to generate strong passwords with various options to meet your security requirements. 
+- If the user is unable to generate a password secure enough within 5 attempts, a random password will be suggested to them. 
+- This password will be compleetly random, not stored or pre-defined in the code or susceptible to potential security breach. 
+- It will also fulfill all the security measures adopted by the program code, the which, in return, is reflective of 
 actual password security measures undertaken by users and websites in the cyber-world.
 
 
