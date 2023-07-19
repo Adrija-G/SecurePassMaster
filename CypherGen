@@ -70,9 +70,10 @@ if attempts == 5 and user_password is not None:
     generated_password = password_generator()
     print("Generated Password:", generated_password)
     time.sleep(2)
-    c= input("Keep as password?")
+    c= input("Keep as password? Yes (y) or no (n)? ")
     if c.lower()=="y":
         print("Congrats! Your password:", generated_password[0], "*" * (len(generated_password) - 1), "has been accepted!")
     else:
-        password_checker()
-    
+        result = password_checker(generated_password)
+
+
