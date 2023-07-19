@@ -1,5 +1,6 @@
 import re
 import random
+import time
 
 def password_checker(password):
     if len(password) < 6:
@@ -50,17 +51,21 @@ user_password = None
 
 while attempts < 5:
     user_password = input("Enter your password: ")
+    time.sleep(0.5)
     result = password_checker(user_password)
+    print("Evaluating password...")
+    time.sleep(3)
     if result == "Valid Password":
         print("Password accepted:", user_password)
         break
     else:
         print(result)
         attempts += 1
+        time.sleep(0.5)
         print("Attempts remaining:", 5 - attempts)
 
 if attempts == 5 and user_password is not None:
     print("Exceeded maximum attempts. Generating a random password...")
+    time.sleep(3)
     generated_password = password_generator()
     print("Generated Password:", generated_password)
-
