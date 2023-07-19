@@ -48,10 +48,10 @@ def password_generator():
 
 attempts = 0
 user_password = None
+c= ""
 
 while attempts < 5:
     user_password = input("Enter your password: ")
-    time.sleep(0.5)
     result = password_checker(user_password)
     print("Evaluating password...")
     time.sleep(3)
@@ -66,6 +66,13 @@ while attempts < 5:
 
 if attempts == 5 and user_password is not None:
     print("Exceeded maximum attempts. Generating a random password...")
-    time.sleep(3)
+    time.sleep(4)
     generated_password = password_generator()
     print("Generated Password:", generated_password)
+    time.sleep(2)
+    c= input("Keep as password?")
+    if c.lower()=="y":
+        print("Congrats! Your password:", generated_password[0], "*" * (len(generated_password) - 1), "has been accepted!")
+    else:
+        password_checker()
+    
