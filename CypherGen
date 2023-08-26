@@ -1,6 +1,18 @@
 import re
 import random
 import time
+from sklearn.ensemble import IsolationForest
+
+def vigenere_encrypt(plaintext, key):
+    encrypted_text = ""
+    key_length = len(key)
+    
+    for i in range(len(plaintext)):
+        shift = ord(key[i % key_length]) - ord('a')
+        encrypted_char = chr((ord(plaintext[i]) + shift) % 128)
+        encrypted_text += encrypted_char
+    
+    return encrypted_text
 
 def password_checker(password):
     if len(password) < 6:
@@ -46,15 +58,33 @@ def password_generator():
     password = "".join(random.sample(temp_pass, len(temp_pass)))
     return password
 
+generated_password = password_generator()
+
+def detect_anomalies(passwords):
+    isolation_forest = IsolationForest(contamination=0.5, random_state=42)
+    X = [[len(password)] for password in passwords]
+    isolation_forest.fit(X)
+    anomalies = isolation_forest.predict(X)
+    return anomalies
+
 attempts = 0
 user_password = None
-c= ""
+c = ""
 
 while attempts < 5:
     user_password = input("Enter your password: ")
     result = password_checker(user_password)
+
+    # Detect anomalies
+    anomalies = detect_anomalies([user_password])
+
+    if anomalies[0] == -1:
+        print("Unusual password detected. Please choose another.")
+        continue
+
     print("Evaluating password...")
     time.sleep(3)
+
     if result == "Valid Password":
         print("Password accepted:", user_password)
         break
@@ -67,13 +97,22 @@ while attempts < 5:
 if attempts == 5 and user_password is not None:
     print("Exceeded maximum attempts. Generating a random password...")
     time.sleep(4)
-    generated_password = password_generator()
     print("Generated Password:", generated_password)
     time.sleep(2)
-    c= input("Keep as password? Yes (y) or no (n)? ")
-    if c.lower()=="y":
-        print("Congrats! Your password:", generated_password[0], "*" * (len(generated_password) - 1), "has been accepted!")
+    c = input("Keep as password? Yes (y) or no (n)? ")
+    if c.lower() == "y":
+        print("Your password is:", generated_password[0], "*" * (len(generated_password) - 1), "\nDo not share this with anybody.")
     else:
         result = password_checker(generated_password)
+    
+    
+# Ask user for an encryption key
+encryption_key = input("Enter an encryption key (a word): ").lower()
+
+# Encrypt the generated password using Vigenère cipher
+encrypted_password = vigenere_encrypt(generated_password, encryption_key)
+
+print("Encrypted Password:", encrypted_password)
+print("Do not share this with anybody.")
 
 
