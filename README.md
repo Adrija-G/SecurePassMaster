@@ -13,23 +13,3 @@
 
 - **Enhanced Security:** To ensure top-tier security, CipherGen employs the Isolated Forest algorithm and adds an additional layer of protection by performing Vigenère Cipher encryption on generated passwords. Your data remains secure. 🌐
 
-## Getting Started
-
-Getting started with CipherGen is straightforward:
-
-1. **Clone the Repository:** Clone this repository to your local machine.
-
-2. **Install Dependencies:** Ensure that you have all the required dependencies installed. 
-
-3. **Run CipherGen:** Launch the program in your browser!
-
-For more info, you can refer to Github's official page: https://docs.github.com/en 
-
-## Contribution Opportunities
-
-- Contributions to CipherGen are welcome and valuable ❤ This project provides an excellent opportunity, particularly for those who are new to GitHub's pull request process, to gain a deeper understanding of how it works.💻
-
-- Feel free to fork this repository and submit your pull requests. While we can't guarantee that every request will be merged, we welcome your input and appreciate your efforts to improve CipherGen. Your contributions can make a difference! 🌟
-
-
-
